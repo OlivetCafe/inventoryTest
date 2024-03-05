@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <h1>Existencia</h1>
+  <div class="container">
+
+  <div class="container mb-4 no-print">
+    <form id="filterForm" action="/inventory" method="get">
+      <input class="form-control"  type="text" id="inputFilter" name="filter" placeholder="Filtrar Articulo-Linea-Ingrediente" value="<%= filterValue %>">
+    </form>
+  </div>
+
+  <div class="container">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Nombre Articulo</th>
+          <th>Linea Articulo</th>
+          <th>ingrediente_activo</th>
+          <th>Tipo Producto</th>
+          <th>Nombre Grupo</th>
+          <th>Almacen</th>
+          <th>Existencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(item => { %>
+          <tr>
+            <td><%= item.nombre_articulo %></td>
+            <td><%= item.nombre_linea %></td>
+            <td><%= item.ingrediente_activo %></td>
+            <td><%= item.tipo_producto %></td>
+            <td><%= item.nombre_grupo %></td>
+            <td><%= item.almacen %></td>
+            <td><%= item.existencia %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pages pb-5">
+    <div>
+      <% if (prevPageUrl) { %>
+        <a class="btn btn-outline-dark" href="<%= prevPageUrl %>">Previous Page</a>
+      <% } %>
+    </div>
+  
+    <div>
+      <% if (nextPageUrl) { %>
+        <a class="btn btn-outline-dark" href="<%= nextPageUrl %>">Next Page</a>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>
